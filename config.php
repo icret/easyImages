@@ -21,7 +21,7 @@
  * - 修复中文水印乱码
 -----------------------------------------*--------------------------------------*/
 $config = array (
-    'domain'        => 'http://www.test.com/',       // 域名 需要完全书写http?s://domain/
+    'domain'        => 'https://img.545141.com/',       // 域名 需要完全书写http?s://domain/
     'maxSize'       => '2097152',                       // 上传文件大小的最大值 默认2M  如需要更大上传请参考php.ini修改
     'filePath'      => 'images/',                       // 图片存储文件夹 末尾需加 '/'
     'language'      =>  'zh_CN',                        // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'

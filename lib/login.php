@@ -1,4 +1,4 @@
-<?php include __DIR__.'./header.php';
+<?php include __DIR__.'/header.php';
 echo '<title>登录简单图床 - EasyImage</title>';
 ?>
 <div class="col-md-12" style="margin: 40px;">
@@ -10,4 +10,4 @@ echo '<title>登录简单图床 - EasyImage</title>';
       <button type="submit" class="btn btn-primary">登录</button>
     </form>
 </div>
-<?php include __DIR__.'./footer.php';?>
+<?php include __DIR__.'/footer.php';?>
