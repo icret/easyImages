@@ -3,9 +3,9 @@
  *
  */
 // 载入文件
-require 'lib/class.upload.php';
-require 'lib/func.php';
-require 'config.php';
+require './lib/class.upload.php';
+require './lib/func.php';
+require './config.php';
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
@@ -43,25 +43,29 @@ if ($handle->uploaded){
     // 调用水印
     if ($config['watermark'] > 0){
         switch ($config['watermark']){
-            case 1: // 文字水印
-                $handle->image_text = $config['waterText'];
-                $handle->image_text_direction = $config['textDirection'];
-                $handle->image_text_color = $config['textColor'];
-                $handle->image_text_opacity = $config['textOpacity'];
-                $handle->image_text_font = $config['textFont'];
-                $handle->image_text_padding = $config['textPadding'];
-                $handle->image_text_position = $config['waterPosition'];
-                // 设置背景色
-                if (!empty($config['text_bg_bg'])){
-                $handle->image_text_background = $config['text_water_bg'];
-                $handle->image_text_background_opacity = $config['text_bg_opa'];
+            case 1: // 文字水印 过滤gif
+                if ($handle->file_src_name_ext != 'gif'){
+                    $handle->image_text = $config['waterText'];
+                    $handle->image_text_direction = $config['textDirection'];
+                    $handle->image_text_color = $config['textColor'];
+                    $handle->image_text_opacity = $config['textOpacity'];
+                    $handle->image_text_font = $config['textFont'];
+                    $handle->image_text_padding = $config['textPadding'];
+                    $handle->image_text_position = $config['waterPosition'];
+                    // 设置背景色
+                    if ($config['text_bg_set']){
+                    $handle->image_text_background = $config['text_water_bg'];
+                    $handle->image_text_background_opacity = $config['text_bg_opa'];
+                    }
                 }
                 break;
             case 2: // 图片水印
-                $handle->image_watermark = $config['waterImg'];
-                $handle->image_watermark_position = $config['waterPosition'];
-                $handle->image_watermark_no_zoom_in = true;
-                $handle->image_watermark_no_zoom_out = true;
+                if ($handle->file_src_name_ext != 'gif') {
+                    $handle->image_watermark             = $config['waterImg'];
+                    $handle->image_watermark_position    = $config['waterPosition'];
+                    $handle->image_watermark_no_zoom_in  = true;
+                    $handle->image_watermark_no_zoom_out = true;
+                }
                 break;
             default:
                 echo '水印读取错误';
@@ -70,6 +74,7 @@ if ($handle->uploaded){
     }
 
     // 存储图片路径:images/201807/
+    // 由于
     $handle->process(config_path());
 
     // 图片完整相对路径:images/201807/0ed7ccfd4dab9cbc.jpg

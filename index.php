@@ -1,9 +1,9 @@
-<?php include './header.php';?>
+<?php include './lib/header.php';?>
 <div class="container">
   <div class="col-md-12">
     <ul style="list-style: none;margin:1px 1px 30px 1px;">
       <li class="icon icon-dot-circle text-muted">此页面仅作展示使用，每日定时清理，请勿当做图床。单个文件限制2M。</li></ul>
-    <div id='upShowID' class="uploader col-md-10 col-md-offset-1" data-ride="uploader" data-url="file.php">
+    <div id='upShowID' class="uploader col-md-10 col-md-offset-1" data-ride="uploader" data-url="./file.php">
       <div class="uploader-message text-center">
         <div class="content"></div>
         <button type="button" class="close">×</button></div>
@@ -19,13 +19,13 @@
     <div class="col-md-8 col-md-offset-2">
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="###" data-target="#tab2Content1" data-toggle="tab">直链</a></li>
+          <a href="#" data-target="#tab2Content1" data-toggle="tab">直链</a></li>
         <li>
-          <a href="###" data-target="#tab2Content2" data-toggle="tab">论坛代码</a></li>
+          <a href="#" data-target="#tab2Content2" data-toggle="tab">论坛代码</a></li>
         <li>
-          <a href="###" data-target="#tab2Content3" data-toggle="tab">MarkDown</a></li>
+          <a href="#" data-target="#tab2Content3" data-toggle="tab">MarkDown</a></li>
         <li>
-          <a href="###" data-target="#tab2Content4" data-toggle="tab">HTML</a></li>
+          <a href="#" data-target="#tab2Content4" data-toggle="tab">HTML</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane fade active in" id="tab2Content1">
@@ -53,7 +53,7 @@ $('#upShowID').uploader({
 	// 当选择文件后立即自动进行上传操作
     autoUpload: false,
 	// 文件上传提交地址
-    url: 'file.php',
+    url: './file.php',
 	// 最大支持的上传文件
     max_file_size: '2mb',
 	// 是否分片上传 0为不分片 经测试分片容易使图片上传失败
@@ -126,4 +126,4 @@ $('#upShowID').uploader({
     }
   });
   </script>
-<?php include 'footer.php';?>
+<?php include './lib/footer.php';?>

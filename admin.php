@@ -3,7 +3,7 @@ include './config.php';
 include './lib/func.php';
 // 校验登录
 checkLogin();
-include './header.php';
+include './lib/header.php';
 ?>
     <div class="container-fixed">
         <div class="alert with-icon">
@@ -14,19 +14,19 @@ include './header.php';
                 <div class="col-xs-3">
                     <ul class="nav nav-tabs nav-stacked">
                         <li class="active">
-                            <a href="###" data-target="#tab3Content1" data-toggle="tab">主要配置</a></li>
+                            <a href="#" data-target="#tab3Content1" data-toggle="tab">主要配置</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content2" data-toggle="tab">文字水印配置</a></li>
+                            <a href="#" data-target="#tab3Content2" data-toggle="tab">文字水印配置</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content3" data-toggle="tab">图片水印配置</a></li>
+                            <a href="#" data-target="#tab3Content3" data-toggle="tab">图片水印配置</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content4" data-toggle="tab">修改上传图片大小</a></li>
+                            <a href="" data-target="#tab3Content4" data-toggle="tab">修改上传图片大小</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content5" data-toggle="tab">限制最低上传图片长宽</a></li>
+                            <a href="#" data-target="#tab3Content5" data-toggle="tab">限制最低上传图片长宽</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content6" data-toggle="tab">其他设置</a></li>
+                            <a href="#" data-target="#tab3Content6" data-toggle="tab">其他设置</a></li>
                         <li>
-                            <a href="###" data-target="#tab3Content7" data-toggle="tab">个人资料</a></li>
+                            <a href="#" data-target="#tab3Content7" data-toggle="tab">个人资料</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-9">
@@ -238,7 +238,7 @@ include './header.php';
             </div>
         </div>
     </div>
-    <script src="./static/jquery.min.js?v3.3.1"></script>
-    <script src="./static/zui/js/zui.min.js?v1.8.1"></script>
-    <script src="./static/qrcode.min.js"></script>
+    <script src="../static/jquery.min.js?v3.3.1"></script>
+    <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
+    <script src="../static/qrcode.min.js"></script>
 <?php include './footer.php';?>
