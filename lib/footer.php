@@ -1,6 +1,41 @@
 <?php
 echo '
+    <script src="./static/qrcode.min.js"></script>
+    <script src="./static/jquery.min.js?v3.3.1"></script>
+    <script src="./static/zui/js/zui.min.js?v1.8.1"></script>
+    <script src="./static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
     <footer class="text-muted small col-md-12" style="text-align: center">
+    <script type="text/javascript">
+  // jsqrcode获取当前网址并赋值给id=text的value
+  document.getElementById("text").value = window.location.href;
+
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width: 150,
+    height: 150
+  });
+  function makeCode() {
+    var elText = document.getElementById("text");
+
+    if (!elText.value) {
+      alert("Input a text");
+      elText.focus();
+      return;
+    }
+
+    qrcode.makeCode(elText.value);
+  }
+  makeCode();
+
+  $("#text").on("blur",
+  function() {
+    makeCode();
+  }).on("keydown",
+  function(e) {
+    if (e.keyCode == 13) {
+      makeCode();
+    }
+  });
+  </script>
         Copyright © '. date('Y').' EasyImage Powered By Author By <code><a href="https://github.com/icret/easyImages" target="_blank">pyther</a></code> Verson: '.$config['Version'].'
     </footer>
 </body>

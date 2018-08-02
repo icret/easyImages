@@ -1,4 +1,6 @@
-<?php include './lib/header.php';?>
+<?php include './lib/header.php';
+echo '<title>简单图床 - EasyImage</title>';
+?>
 <div class="container">
   <div class="col-md-12">
     <ul style="list-style: none;margin:1px 1px 30px 1px;">
@@ -44,10 +46,6 @@
     </div>
   </div>
 </div>
-<script src="./static/jquery.min.js?v3.3.1"></script>
-<script src="./static/zui/js/zui.min.js?v1.8.1"></script>
-<script src="./static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
-<script src="./static/qrcode.min.js"></script>
 <script>
 $('#upShowID').uploader({
 	// 当选择文件后立即自动进行上传操作
@@ -97,7 +95,7 @@ $('#upShowID').uploader({
   </script>
 <script type="text/javascript">
   // jsqrcode获取当前网址并赋值给id=text的value
-  document.getElementById('text').value = window.location.href;
+  document.getElementById("text").value = window.location.href;
 
   var qrcode = new QRCode(document.getElementById("qrcode"), {
     width: 150,

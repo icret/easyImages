@@ -4,6 +4,7 @@ include './lib/func.php';
 // 校验登录
 checkLogin();
 include './lib/header.php';
+echo '<title>简单图床设置 - EasyImage</title>';
 ?>
     <div class="container-fixed">
         <div class="alert with-icon">
@@ -238,7 +239,4 @@ include './lib/header.php';
             </div>
         </div>
     </div>
-    <script src="../static/jquery.min.js?v3.3.1"></script>
-    <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
-    <script src="../static/qrcode.min.js"></script>
-<?php include './footer.php';?>
+<?php include './lib/footer.php';?>

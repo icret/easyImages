@@ -1,4 +1,6 @@
-<?php include __DIR__.'/../header.php';?>
+<?php include __DIR__.'./header.php';
+echo '<title>登录简单图床 - EasyImage</title>';
+?>
 <div class="col-md-12" style="margin: 40px;">
     <form class="form-inline col-md-6 col-md-offset-3" action="./admin.php" method="post">
       <div class="form-group">
@@ -8,4 +10,4 @@
       <button type="submit" class="btn btn-primary">登录</button>
     </form>
 </div>
-<?php include __DIR__.'/../footer.php';?>
+<?php include __DIR__.'./footer.php';?>
