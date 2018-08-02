@@ -10,9 +10,9 @@ include __DIR__.'/../config.php';
         global $config;
         // 判断$config['filePath']文件夹是否存在 是否可写
         if (!is_dir($config['filePath'])) {
-            mkdir( $config['filePath'], 0777, true );
+            mkdir( $config['filePath'], 777, true );
         }elseif (!is_writable($config['filePath'])) {
-            chmod( $config['filePath'], 0777);
+            chmod( $config['filePath'], 777);
         }
 
         // 图片默认上传文件夹是否存在、可写

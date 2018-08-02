@@ -20,7 +20,7 @@
  * - 待完善管理设置
 -----------------------------------------*--------------------------------------*/
 $config = array (
-    'domain'        => 'http://www.test.com/',          // 域名 需要完全书写http?s://domain/
+    'domain'        => 'http://www.test.com/',       // 域名 需要完全书写http?s://domain/
     'maxSize'       => '2097152',                       // 上传文件大小的最大值 默认2M  如需要更大上传请参考php.ini修改
     'filePath'      => 'images/',                       // 图片存储文件夹 末尾需加 '/'
     'language'      =>  'zh_CN',                        // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
@@ -30,7 +30,7 @@ $config = array (
     'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
     'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
 
-    'waterText'     => 'www.test.com',                  // 指定文字水印 [
+    'waterText'     => 'easyImage img.141545.com',		// 指定文字水印 [
     'textDirection' => 'h',                             //     文字方向 水平'h' 垂直'v'
     'textPadding'   => '10',                            //     边距 px
     'textColor'     => '#FF0000',                       //     字体颜色 16色
