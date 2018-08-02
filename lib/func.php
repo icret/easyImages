@@ -41,16 +41,17 @@ include __DIR__.'/../config.php';
             if ( $_POST['password'] == $config['password'] ) {
                 $psw = $_POST['password'];
                 setcookie('admin',$psw);
+                echo '<code>登录成功</code>';
             }else{
-                echo '密码错误';
+                echo '<code>密码错误</code>';
                 exit( include __DIR__ . '/login.php' );
             }
         } elseif (!empty( $_COOKIE['admin'] ) ) {
             if ( $_COOKIE['admin'] == $config['password'] ) {
-                echo '登录成功';
+                echo '<code>登录成功</code>';
             }
         } else {
-            echo '请登录';
+            echo '<code>请登录</code>';
             exit( include __DIR__ . '/login.php' );
         }
     }
