@@ -1,3 +1,4 @@
+![例子](https://img.545141.com/images/201808/3b69f5b7f19f6fb6.png "例子")
 # EasyImage 介绍
   之前一直用的图床程序是:PHP多图长传程序2.4.3
   由于版本过老并且默认使用falsh上传，在当前html5流行大势所趋下，遂利用基础知识新写了一个以html5为默认上传并且支持flash,兼容IE9。
