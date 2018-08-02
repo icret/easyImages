@@ -44,7 +44,7 @@ if ($handle->uploaded){
     if ($config['watermark'] > 0){
         switch ($config['watermark']){
             case 1: // 文字水印 过滤gif
-                if ($handle->file_src_name_ext != 'gif'){
+                if (isAnimatedGif($handle->file_src_pathname)===0){
                     $handle->image_text = $config['waterText'];
                     $handle->image_text_direction = $config['textDirection'];
                     $handle->image_text_color = $config['textColor'];
@@ -54,8 +54,8 @@ if ($handle->uploaded){
                     $handle->image_text_position = $config['waterPosition'];
                     // 设置背景色
                     if ($config['text_bg_set']){
-                    $handle->image_text_background = $config['text_water_bg'];
-                    $handle->image_text_background_opacity = $config['text_bg_opa'];
+                        $handle->image_text_background = $config['text_water_bg'];
+                        $handle->image_text_background_opacity = $config['text_bg_opa'];
                     }
                 }
                 break;
