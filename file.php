@@ -60,7 +60,7 @@ if ($handle->uploaded){
                 }
                 break;
             case 2: // 图片水印
-                if ($handle->file_src_name_ext != 'gif') {
+                if (isAnimatedGif($handle->file_src_pathname)===0){
                     $handle->image_watermark             = $config['waterImg'];
                     $handle->image_watermark_position    = $config['waterPosition'];
                     $handle->image_watermark_no_zoom_in  = true;

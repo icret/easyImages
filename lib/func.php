@@ -55,7 +55,7 @@ include __DIR__.'/../config.php';
             exit( include __DIR__ . '/login.php' );
         }
     }
-    // 判断图片是否为动态
+    // 判断GIF图片是否为动态
     function isAnimatedGif($filename) {
         $fp = fopen($filename, 'rb');
         $filecontent = fread($fp, filesize($filename));
