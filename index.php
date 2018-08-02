@@ -92,7 +92,7 @@ $('#upShowID').uploader({
 
     }
   });
-  </script>
+</script>
 <script type="text/javascript">
   // jsqrcode获取当前网址并赋值给id=text的value
   document.getElementById("text").value = window.location.href;

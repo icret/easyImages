@@ -1,10 +1,5 @@
 <?php
-echo '
-    <script src="./static/qrcode.min.js"></script>
-    <script src="./static/jquery.min.js?v3.3.1"></script>
-    <script src="./static/zui/js/zui.min.js?v1.8.1"></script>
-    <script src="./static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
-    <footer class="text-muted small col-md-12" style="text-align: center">
+echo '    
     <script type="text/javascript">
   // jsqrcode获取当前网址并赋值给id=text的value
   document.getElementById("text").value = window.location.href;
@@ -36,6 +31,7 @@ echo '
     }
   });
   </script>
+  <footer class="text-muted small col-md-12" style="text-align: center">
         Copyright © '. date('Y').' EasyImage Powered By Author By <code><a href="https://github.com/icret/easyImages" target="_blank">pyther</a></code> Verson: '.$config['Version'].'
     </footer>
 </body>
