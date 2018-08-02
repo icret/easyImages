@@ -41,7 +41,7 @@ echo '
             <li><a class="dropdown-toggle hidden-xs" data-toggle="dropdown" href="#">QrCode<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <input id="text" type="hidden" value=""/>
-                    <li id="qrcode" style="width:100%;"></li>
+                    <li id="qrcode" style="width:100%;">扫描二维码使用手机上传</li>
                 </ul>
             </li>
         </ul>
