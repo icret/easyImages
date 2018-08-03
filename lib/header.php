@@ -1,5 +1,6 @@
 <?php
 include __DIR__.'./../config.php';
+include_once __DIR__.'/func.php';
 
     if (@$_GET['outLogin']==1){
         setcookie('admin',null);
@@ -13,12 +14,7 @@ echo '
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../static/icon/speed_plane_32px.ico"  type="image/x-icon" />
-    <link href="../static/zui/css/zui.min.css?v1.8.1" rel="stylesheet">
-    <link href="../static/zui/lib/uploader/zui.uploader.min.css?v1.8.1" rel="stylesheet">
-    <script src="../static/qrcode.min.js"></script>
-    <script src="../static/jquery.min.js?v3.3.1"></script>
-    <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
-    <script src="../static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
+    '.static_cdn().'
     <style>
         .uploader-files{
             min-height:120px;

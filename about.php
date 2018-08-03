@@ -1,16 +1,17 @@
 <?php include __DIR__.'/lib/header.php';
 echo '<title>关于简单图床 - EasyImage</title>';
-?>
-  
+?>  
   <body>
     <p>
-      <img src="https://img.545141.com/images/201808/3b69f5b7f19f6fb6.png" alt="例子" title="例子"></p>
+      <img src="https://img.545141.com/images/201808/daf111c0b24a5753.png" alt="例子" title="例子"></p>
     <h1 id="h1-easyimage-">
-      <a name="EasyImage 介绍" class="reference-link"></a>
-      <span class="header-link octicon octicon-link"></span>EasyImage 介绍</h1>
+      <a name="EasyImage 简单图床 介绍" class="reference-link"></a>
+      <span class="header-link octicon octicon-link"></span>EasyImage 简单图床 介绍</h1>
     <p>之前一直用的图床程序是:PHP多图长传程序2.4.3
-      <br>由于版本过老并且默认使用falsh上传，在当前html5流行大势所趋下，遂利用基础知识新写了一个以html5为默认上传并且支持flash,兼容IE9。
-      <br>本代码受到PHP多图片上传程序2.4.3启发,以练习PHP为目而写。
+      <br>由于版本过老并且使用falsh上传，在当前html5流行大势所趋下，遂利用基础知识新写了一个以html5为默认上传并且支持flash,兼容至IE9。</p>
+    <p>本代码受到PHP多图片上传程序2.4.3启发,以练习PHP为目而写。
+      <br>js不要设置分片上传大小，此会导致部分图片上传失败。
+      <br>当上传失败时默认最大尝试3次。
       <br>
       <strong>使用前请注意先修改config.php中的domain域名为自己的！</strong></p>
     <ul>
@@ -22,32 +23,41 @@ echo '<title>关于简单图床 - EasyImage</title>';
       <li>支持设置图片指定宽/高</li>
       <li>支持限制最低宽度/高度上传</li>
       <li>支持静态文件CDN/本地切换</li>
+      <li>浏览最近上传图片</li>
       <li>
         <ul>
           <li>待开发：</li>
+          <li>一键CDN静态文件</li>
           <li>上传图片至远程存储路径</li>
-          <li>
-            <del>修复gif上传添加水印成静态的问题</del></li>
-          <li>在线设置参数</li>
-          <li>静态文件CDN/本地切换</li></ul>
+          <li>完善管理设置</li>
+          <li>修复中文水印乱码</li></ul>
       </li>
     </ul>
     <hr>
     <ul>
-      <li>2018-08-02 v 1.1.2
+      <li>
+        <p>2018-8-3 v1.2.2</p>
+        <ul>
+          <li>[重要]修复水印图片不能添加</li>
+          <li>添加随机浏览上传图片 可以设定浏览数量和关闭浏览</li>
+          <li>优化代码，删除无用文件</li></ul>
+      </li>
+      <li>
+        <p>2018-08-02 v1.1.2</p>
         <ul>
           <li>[重要] 修复gif上传添加水印成静态的问题</li>
           <li>修复文字水印背景色不显示问题</li>
           <li>修复在linux下的权限错误</li>
-          <li>一些代码优化更改</li></ul>
+          <li>一些优化更改</li></ul>
       </li>
-      <li>2018-08-01 1.0.1
+      <li>
+        <p>2018-08-01 v1.0.1</p>
         <ul>
           <li>更改相关文件目录</li>
           <li>优化代码</li></ul>
       </li>
       <li>
-        <p>2018-07-30 1.0.0</p>
+        <p>2018-07-30 v1.0.0</p>
         <ul>
           <li>最初模型</li></ul>
         <h3 id="h3-u517Cu5BB9u6027">
@@ -64,4 +74,5 @@ echo '<title>关于简单图床 - EasyImage</title>';
         <a href="http://zui.sexy/" title="ZUI">ZUI</a>提供css框架</li>
       <li>感谢: cctv让我能上Github</li>
       <li>本源码遵循 GNU Public License</li></ul>
+  </body>
 <?php include __DIR__.'/lib/footer.php';?>

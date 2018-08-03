@@ -106,3 +106,32 @@ include __DIR__.'/../config.php';
         }
         return $fileArray;
     }
+
+// 设置一键CDN
+    function static_cdn(){
+        global $config;
+        if ($config['static_cdn']){
+            // 开启CDN
+            return '
+            <link href="https://cdn.bootcss.com/zui/1.8.1/css/zui.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.css" rel="stylesheet">
+            
+            <script src="../static/qrcode.min.js?v1.0"></script>
+            <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v3.3.1"></script>
+            <script src="https://cdn.bootcss.com/zui/1.8.1/js/zui.min.js?v1.8.1"></script>
+            <script src="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
+            ';
+
+        }else{
+            // 本地文件
+            return '
+             <link href="../static/zui/css/zui.min.css?v1.8.1" rel="stylesheet">
+            <link href="../static/zui/lib/uploader/zui.uploader.min.css?v1.8.1" rel="stylesheet">
+            
+            <script src="../static/qrcode.min.js?v1.0"></script>
+            <script src="../static/jquery.min.js?v3.3.1"></script>
+            <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
+            <script src="../static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
+            ';
+        }
+    }
