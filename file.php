@@ -68,13 +68,12 @@ if ($handle->uploaded){
                 }
                 break;
             default:
-                echo '水印读取错误';
+                echo $handle->error;
                 break;
         }
     }
 
     // 存储图片路径:images/201807/
-    // 由于
     $handle->process(config_path());
 
     // 图片完整相对路径:images/201807/0ed7ccfd4dab9cbc.jpg
