@@ -54,10 +54,12 @@ $config = array (
     'image_min_h'   => 100,                             // 上传图片的最小高度 空为不限制''
 
     'password'      => '000',                     		// 默认密码000 使用crc32加密 修改方法:echo crc32('password')
-    'static_cdn'    => true,                           // 开启CDN 开启true 关闭false
+    'static_cdn'    => true,                            // 开启CDN 开启true 关闭false
     'showSwitch'    => true,                            // * 图片展示开关 开启true 关闭false
     'showNumber'    => 100,                             // * 展示最近图片数量
-    'Version'   	=> '1.2.2'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
+    'ad_top'        => true,                            // * 开启顶部广告
+    'ad_bot'        => true,                            // * 开启底部广告
+    'Version'   	=> '1.3.2'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
 );
 
 // 设置html为utf8

@@ -23,6 +23,7 @@ echo '
     </style>
 </head>
 <body class="container">
+    '.showAD('top').'
     <div class="md-lg-12 header-dividing">
         <ul class="nav nav-pills">
             <li class="active"><a href="../index.php">Index</a></li>

@@ -116,7 +116,7 @@ include __DIR__.'/../config.php';
             <link href="https://cdn.bootcss.com/zui/1.8.1/css/zui.min.css" rel="stylesheet">
             <link href="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.css" rel="stylesheet">
             
-            <script src="../static/qrcode.min.js?v1.0"></script>
+            <script type="text/javascript" src="http://yourjavascript.com/6370281018/qrcode-min.js"></script>
             <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v3.3.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/js/zui.min.js?v1.8.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
@@ -133,5 +133,25 @@ include __DIR__.'/../config.php';
             <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
             <script src="../static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
             ';
+        }
+    }
+
+    // 设置广告
+    function showAD($where) {
+        global $config;
+        switch ($where){
+            case 'top':
+                if ($config['ad_top']){
+                    echo file_get_contents($config['domain'].'static/ad_top.html');
+                }
+                break;
+            case 'bot':
+                if ($config['ad_bot']){
+                    echo file_get_contents($config['domain'].'static/ad_bot.html');
+                }
+                break;
+            default:
+                echo '广告函数出错';
+                break;
         }
     }

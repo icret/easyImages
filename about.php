@@ -1,7 +1,7 @@
 <?php include __DIR__.'/lib/header.php';
 echo '<title>关于简单图床 - EasyImage</title>';
 ?>  
-  <body>
+    <body>
     <p>
       <img src="https://img.545141.com/images/201808/daf111c0b24a5753.png" alt="例子" title="例子"></p>
     <h1 id="h1-easyimage-">
@@ -23,11 +23,11 @@ echo '<title>关于简单图床 - EasyImage</title>';
       <li>支持设置图片指定宽/高</li>
       <li>支持限制最低宽度/高度上传</li>
       <li>支持静态文件CDN/本地切换</li>
-      <li>浏览最近上传图片</li>
+      <li>支持浏览最近上传图片</li>
+      <li>支持设置广告</li>
       <li>
         <ul>
           <li>待开发：</li>
-          <li>一键CDN静态文件</li>
           <li>上传图片至远程存储路径</li>
           <li>完善管理设置</li>
           <li>修复中文水印乱码</li></ul>
@@ -36,11 +36,18 @@ echo '<title>关于简单图床 - EasyImage</title>';
     <hr>
     <ul>
       <li>
+        <p>2018-8-4 v1.3.2</p>
+        <ul>
+          <li>添加广告设置</li>
+          <li>完善引入机制</li></ul>
+      </li>
+      <li>
         <p>2018-8-3 v1.2.2</p>
         <ul>
           <li>[重要]修复水印图片不能添加</li>
           <li>添加随机浏览上传图片 可以设定浏览数量和关闭浏览</li>
-          <li>优化代码，删除无用文件</li></ul>
+          <li>优化代码，删除无用文件</li>
+          <li>完善一键CDN静态文件</li></ul>
       </li>
       <li>
         <p>2018-08-02 v1.1.2</p>
