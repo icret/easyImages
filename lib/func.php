@@ -155,3 +155,10 @@ include __DIR__.'/../config.php';
                 break;
         }
     }
+    // 仅允许登录后上传
+function mustLogin(){
+        global $config;
+        if ($config['mustLogin']){
+            checkLogin();
+        }
+}

@@ -16,6 +16,7 @@
  * 支持静态文件CDN/本地切换
  * 支持浏览最近上传图片
  * 支持设置广告
+ * 支持仅登录后可上传
  * 待开发：
  * - 一键CDN静态文件
  * - 上传图片至远程存储路径
@@ -24,14 +25,14 @@
 -----------------------------------------*--------------------------------------*/
 $config = array (
     'domain'        => 'https://img.545141.com/',       // 域名 需要完全书写http?s://domain/
-    'maxSize'       => '2097152',                       // 上传文件大小的最大值 默认2M  如需要更大上传请参考php.ini修改
+    'maxSize'       => '2097152',                       // 上传文件大小的最大值 默认2M  最大请参考php.ini修改 同时需要修改前端js
     'filePath'      => 'images/',                       // 图片存储文件夹 末尾需加 '/'
-    'language'      => 'zh_CN',                         // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
     'png_zip'       => '7',                             // png 图像质量 介于1（快速但大文件）和9（慢速但较小的文件）之间 ，空为不压缩
     'jpeg_zip'      => '85',                            // jpeg图像质量 介于1-100 数值越大质量越高 默认85
     'watermark'     => '2',                             // 是否开启水印 0关闭，1文字水印，2图片水印 动态gif不能添加水印
     'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
     'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
+    'mustLogin'     => false,                           // * 仅允许登录后上传 开启true 关闭false
 
     'waterText'     => 'easyImage img.141545.com',		// 指定文字水印 [
     'textDirection' => 'h',                             //     文字方向 水平'h' 垂直'v'
@@ -54,13 +55,14 @@ $config = array (
     'image_min_w'   => 100,                             // 上传图片的最小宽度 空为不限制''
     'image_min_h'   => 100,                             // 上传图片的最小高度 空为不限制''
 
-    'password'      => '000',                     		// 默认密码000 使用crc32加密 修改方法:echo crc32('password')
+    'password'      => '7576',                     		// 默认密码7576
     'static_cdn'    => true,                            // 开启CDN 开启true 关闭false
     'showSwitch'    => true,                            // * 图片展示开关 开启true 关闭false
     'showNumber'    => 100,                             // * 展示最近图片数量
     'ad_top'        => true,                            // * 开启顶部广告
     'ad_bot'        => true,                            // * 开启底部广告
-    'Version'   	=> '1.3.2'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
+    'language'      => 'zh_CN',                         // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
+    'Version'   	=> '1.4.2'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
 );
 
 // 设置html为utf8

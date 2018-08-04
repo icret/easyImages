@@ -24,3 +24,5 @@ if ($config['showSwitch']){
 
 include './footer.php';
 // echo '<a href="'.$boxImg.'"target="blank">查看原图</a>';
+
+

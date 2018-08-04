@@ -1,4 +1,6 @@
-<?php include './lib/header.php';
+<?php
+include './lib/header.php';
+mustLogin();
 echo '<title>简单图床 - EasyImage</title>';
 ?>
 <div class="container">

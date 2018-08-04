@@ -1,9 +1,9 @@
 <?php
 include './config.php';
 include './lib/func.php';
+include './lib/header.php';
 // 校验登录
 checkLogin();
-include './lib/header.php';
 echo '<title>简单图床设置 - EasyImage</title>';
 ?>
     <div class="container-fixed">

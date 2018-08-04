@@ -1,4 +1,4 @@
-<?php include __DIR__.'/header.php';
+<?php
 echo '<title>登录简单图床 - EasyImage</title>';
 ?>
 <div class="col-md-12" style="margin: 40px;">

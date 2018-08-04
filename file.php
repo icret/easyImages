@@ -6,6 +6,8 @@
 require './lib/class.upload.php';
 require './lib/func.php';
 require './config.php';
+// 校验是否设置登录方可上传 避免被恶意调用
+mustLogin();
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
