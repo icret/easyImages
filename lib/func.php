@@ -116,7 +116,7 @@ include __DIR__.'/../config.php';
             <link href="https://cdn.bootcss.com/zui/1.8.1/css/zui.min.css" rel="stylesheet">
             <link href="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.css" rel="stylesheet">
             
-            <script type="text/javascript" src="http://yourjavascript.com/6370281018/qrcode-min.js"></script>
+            <script src="../static/qrcode.min.js?v1.0"></script>
             <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v3.3.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/js/zui.min.js?v1.8.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
