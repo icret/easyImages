@@ -1,5 +1,8 @@
 <?php
-include __DIR__.'/../config.php';
+    /*
+     * 所有使用到的函数集合
+     */
+    include __DIR__.'/../config.php';
     // 图片重命名 截取0-16位毫秒时间戳md5
     function config_rename(){
         return substr(md5(microtime()),0,16);
@@ -48,7 +51,6 @@ include __DIR__.'/../config.php';
             }
         } elseif (!empty( $_COOKIE['admin'] ) ) {
             if ( $_COOKIE['admin'] == $config['password'] ) {
-                echo '<code>登录成功</code>';
             }
         } else {
             echo '<code>请登录</code>';
@@ -107,7 +109,7 @@ include __DIR__.'/../config.php';
         return $fileArray;
     }
 
-// 设置一键CDN
+    // 设置一键CDN
     function static_cdn(){
         global $config;
         if ($config['static_cdn']){
@@ -116,10 +118,10 @@ include __DIR__.'/../config.php';
             <link href="https://cdn.bootcss.com/zui/1.8.1/css/zui.min.css" rel="stylesheet">
             <link href="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.css" rel="stylesheet">
             
-            <script src="../static/qrcode.min.js?v1.0"></script>
             <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v3.3.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/js/zui.min.js?v1.8.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
+            <script type="text/javascript" src="https://nzeoq1jz0.qnssl.com/qrcode.min.js?v0"></script>
             ';
 
         }else{
@@ -128,10 +130,10 @@ include __DIR__.'/../config.php';
              <link href="../static/zui/css/zui.min.css?v1.8.1" rel="stylesheet">
             <link href="../static/zui/lib/uploader/zui.uploader.min.css?v1.8.1" rel="stylesheet">
             
-            <script src="../static/qrcode.min.js?v1.0"></script>
             <script src="../static/jquery.min.js?v3.3.1"></script>
             <script src="../static/zui/js/zui.min.js?v1.8.1"></script>
             <script src="../static/zui/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
+            <script src="../static/qrcode.min.js?v1.0"></script>
             ';
         }
     }
@@ -155,10 +157,32 @@ include __DIR__.'/../config.php';
                 break;
         }
     }
+
     // 仅允许登录后上传
-function mustLogin(){
+    function mustLogin(){
         global $config;
         if ($config['mustLogin']){
             checkLogin();
         }
-}
+    }
+
+    // 统计代码 如需修改请打开 /static/hm.js
+    $hm = file_get_contents(__DIR__.'/../static/hm.js');
+
+    // 删除指定文件
+    function del($url){
+        // url本地化
+        $url = htmlspecialchars(parse_url($url)['path']);   // 过滤html 获取url path
+        $url = urldecode(trim(__DIR__.'/..'.$url));
+        // 文件是否存在
+        if (file_exists($url)){
+            // 执行删除
+            if (unlink($url)){
+                echo '<p class="text-success">删除成功</p>';
+            }else{
+                echo '<p class="text-danger">删除失败</p>';
+            }
+        }else{
+            echo '<p class="text-danger">文件不存在</p>';
+        }
+    }

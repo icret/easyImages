@@ -32,6 +32,7 @@ echo '
             <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="'.$config['domain'].'lib/list.php">浏览</a></li>
+            <li><a href="'.$config['domain'].'lib/del.php">删除</a></li>
             <li><a href="../admin.php">设置</a></li>
             <li><a href="../index.php?outLogin=1">退出</a></li>
         </ul>
