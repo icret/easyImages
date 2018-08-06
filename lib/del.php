@@ -5,7 +5,7 @@
 include __DIR__.'/func.php';
 include __DIR__.'/header.php';
 // 检查登录
-//checkLogin();
+checkLogin();
 
 if (isset($_REQUEST['url'])){
     del($_REQUEST['url']);
