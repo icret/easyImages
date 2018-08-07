@@ -45,6 +45,7 @@ c.com也同样改成`'domain'=>'http：//c.com/t/file.php',` 。注意要写完�
 * 把复制过去的 **crossdomian** 文件夹 和所有文件赋予 **0777** 权限 (chmod -R 0777 /www/wwwroot/xxx/crossdomain)。
 * 然后把修改a.com的 **config.php** ，开启跨域上传 `'crossDomain'   => true,` ,并修改：
 `'CDomains'      => [
+'http：//a.com/t/file.php',
 'http：//b.com/t/file.php',
 'http：//c.com/t/file.php'
 ]`
