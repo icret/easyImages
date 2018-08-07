@@ -185,6 +185,6 @@
             if ($config['crossDomain']){
                  echo "'".$config['CDomains'][array_rand($config['CDomains'])]."'";
             }else{
-                echo 'file.php';
+                echo "'file.php'";
             }
     }
