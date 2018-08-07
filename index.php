@@ -53,7 +53,7 @@ $('#upShowID').uploader({
 	// 当选择文件后立即自动进行上传操作
     autoUpload: false,
 	// 文件上传提交地址
-    url: './file.php',
+    url: <?php crossDomain();?>,
 	// 最大支持的上传文件
     max_file_size: '2mb',
 	// 是否分片上传 0为不分片 经测试分片容易使图片上传失败
@@ -70,12 +70,11 @@ $('#upShowID').uploader({
     }],
     // 限制文件上传数目
     limitFilesCount: 10,
-	
+
     responseHandler: function(responseObject, file) {
       // 当服务器返回的文本内容包含 `'success'` 文件上传成功
       if (responseObject.response.indexOf('success')) {
         console.log(responseObject.response);
-        //document.getElementById("links").innerHTML=responseObject.response;}
         var obj = JSON.parse(responseObject.response); //由JSON字符串转换为JSON对象
         var links = document.getElementById("links");
         links.innerHTML += obj.url + "<br />";

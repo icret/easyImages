@@ -1,5 +1,4 @@
 <?php
-include __DIR__.'./../config.php';
 include_once __DIR__.'/func.php';
 
     if (@$_GET['outLogin']==1){

@@ -1,6 +1,6 @@
 ![例子](https://img.545141.com/images/201808/daf111c0b24a5753.png "例子")
-# EasyImage 简单图床 介绍
-  支持多文件同时上传,简单无数据库直接返回图片url的一块图床程序
+# EasyImage 简单图床介绍  邮箱:lemonim(at)qq.com
+  支持多文件上传,远程上传,简单无数据库直接返回图片url的一款图床程序
   之前一直用的图床程序是:PHP多图长传程序2.4.3
   由于版本过老并且使用falsh上传，在当前html5流行大势所趋下，遂利用基础知识新写了一个以html5为默认上传并且支持flash,兼容至IE9。
   
@@ -20,13 +20,41 @@
  * 支持开启/关闭浏览最近上传图片
  * 支持仅登录后上传
  * 支持设置广告
- * 支持网站统计
- * - 待开发：
-   -  上传图片至远程存储路径
-   -  完善管理设置
-   -  修复中文水印乱码
+ * 支持网站统计 请将统计代码放入:/static/hm.js
+ * 支持删除自定义删除图片
+ * 上传图片至远程存储路径
+ * 待开发：
+ * - 完善管理设置
+ * - 修复中文水印乱码
 
 ---
+# 异地上传[跨域上传] 教程
+1. 将 **crossdomain** 文件夹内的所有文件和**config.php**拷贝到新的服务器
+2. 把 **crossdomain** 的上层文件夹赋予 **0777** 权限，同时把所有有文件赋予 **0777** 权限。
+3. 修改新服务器的 **config.php** 的 **"domain"**为当前域名（末尾有'/'）
+4. 修改原服务器的 **config.php** 的 **'crossDomain'** 为 **true** (开启true 关闭false)
+5. 修改原服务器的 **config.php** 的 **'CDomains'** 为 http：//www.新服务器.com/crossdmain/file.php
+
+
+
+## 举例
+* 我有一个域名a.com，同时想随机上传到b.com，c.com等域名。
+* 首先把a.com服务器的 **crossdomain** 文件夹和 **config.php** 文件拷贝到b.com,c.com等主机。
+* 修改复制过去的 **config.php** 里边的 **"domain"** 为当前域名 比如b.com修改成`'domain'=>'http：//b.com/t/file.php',`
+c.com也同样改成`'domain'=>'http：//c.com/t/file.php',` 。注意要写完整路径
+* 把复制过去的 **crossdomian** 文件夹 和所有文件赋予 **0777** 权限 (chmod -R 0777 /www/wwwroot/xxx/crossdomain)。
+* 然后把修改a.com的 **config.php** ，开启跨域上传 `'crossDomain'   => true,` ,并修改：
+`'CDomains'      => [
+'http：//b.com/t/file.php',
+'http：//c.com/t/file.php'
+]`
+注意标点符号，最后一个域名后边没有','
+* 这样就好啦，可以测试一下了。如果有改动，请直接修改a.com的 **config.php** 然后复制到各个主机即可。
+---
+* 2018-8-8 v1.5.3
+ - 添加上传图片只远程主机
+ - 修复逻辑
+ 
 * 2018-8-6 v1.4.3
  - 添加网站统计
  - 添加删除上传文件

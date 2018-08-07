@@ -1,5 +1,4 @@
 <?php
-include './config.php';
 include './lib/func.php';
 include './lib/header.php';
 // 校验登录

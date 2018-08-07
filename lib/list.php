@@ -2,8 +2,6 @@
  /*
   * 图片展示页面
   */
-
-include '../config.php';
 include './func.php';
 include './header.php';
 

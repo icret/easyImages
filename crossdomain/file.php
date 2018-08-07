@@ -1,13 +1,11 @@
 <?php
 // 载入文件
-require './lib/class.upload.php';
-require './lib/func.php';
-
-//header('Access-Control-Allow-Origin:*');
+require __DIR__.'/lib/class.upload.php';
+require __DIR__.'/lib/func.php';
+// 制定允许其他域名访问
+header("Access-Control-Allow-Origin:*");
 //将时区设置为上海时区
 ini_set('date.timezone','Asia/Shanghai');
-// 校验是否设置登录方可上传 避免被恶意调用
-mustLogin();
 
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){

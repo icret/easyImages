@@ -28,14 +28,6 @@
         }
         return $config_filePath.'/';
     }
-    // 设置CDN
-    if ($config['static_cdn']){
-        // 设置CDN
-    }else{
-        //css
-        echo '';
-
-    }
 
     // 校验登录
     function checkLogin() {
@@ -51,6 +43,7 @@
             }
         } elseif (!empty( $_COOKIE['admin'] ) ) {
             if ( $_COOKIE['admin'] == $config['password'] ) {
+                echo '';
             }
         } else {
             echo '<code>请登录</code>';
@@ -185,4 +178,13 @@
         }else{
             echo '<p class="text-danger">文件不存在</p>';
         }
+    }
+    // 跨域上传
+    function crossDomain(){
+            global $config;
+            if ($config['crossDomain']){
+                 echo "'".$config['CDomains'][array_rand($config['CDomains'])]."'";
+            }else{
+                echo 'file.php';
+            }
     }
