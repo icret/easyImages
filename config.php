@@ -35,7 +35,7 @@ $config = array (
     'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
     'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
     'mustLogin'     => false,                           // * 仅允许登录后上传 开启true 关闭false
-    'crossDomain'   => true,                            // * 是否开启异地上传 开启true 关闭false
+    'crossDomain'   => false,                            // * 是否开启异地上传 开启true 关闭false
     'CDomains'      => [                                // * 异地上传的域名列表 如果只有一个，则默认只使用这个一个。
         'https://img.545141.com/crossdomain/file.php', 	// * 异地上传的域名列表如果有多个，请按照格式书写，会随机调用。最后一个不要加','
         'https://img.545141.com/file.php'
