@@ -22,7 +22,6 @@
  * 上传图片至远程存储路径
  * 待开发：
  * - 完善管理设置
- * - 修复中文水印乱码
 -----------------------------------------*--------------------------------------*/
 $config = array (
     // 主要设置
@@ -41,12 +40,12 @@ $config = array (
         'https://img.545141.com/file.php'
     ],
     // 文字水印设置
-    'waterText'     => 'easyImage img.141545.com',		// 指定文字水印 [
+    'waterText'     => '简单图床 img.141545.com',		// 指定文字水印 [
     'textDirection' => 'h',                             //     文字方向 水平'h' 垂直'v'
     'textPadding'   => 10,                              //     边距 px
     'textColor'     => '#FF0000',                       //     字体颜色 16色
     'textOpacity'   => 100,                             //     字体透明度 0-100
-    'textFont'      => '/static/in-app-ui.ttf',         //     字体路径相对路径
+    'textFont'      => './static/MicrosoftYaHei.ttf',   //     字体路径相对路径
     'fontSize'      => 23,                              //     字体大小
     'text_bg_set'   => false,                           //     是否设置水印背景色 设置true 不设置false
     'text_water_bg' => '#DCDCDC',                       //     背景色 背景大小与边距textPadding有关 空则不显示背景颜色 16色
@@ -69,7 +68,7 @@ $config = array (
     'ad_top'        => false,                           // * 开启顶部广告
     'ad_bot'        => true,                            // * 开启底部广告
     'language'      => 'zh_CN',                         // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
-    'Version'   	=> '1.5.3'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
+    'Version'   	=> '1.5.4'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
 );
 
 // 设置html为utf8
