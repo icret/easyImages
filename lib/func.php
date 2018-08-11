@@ -114,7 +114,7 @@
             <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v3.3.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/js/zui.min.js?v1.8.1"></script>
             <script src="https://cdn.bootcss.com/zui/1.8.1/lib/uploader/zui.uploader.min.js?v1.8.1"></script>
-            <script type="text/javascript" src="https://nzeoq1jz0.qnssl.com/qrcode.min.js?v0"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/icret/easyImages@1.5.3/static/qrcode.min.js?v1"></script>
             ';
 
         }else{
