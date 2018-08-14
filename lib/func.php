@@ -137,12 +137,12 @@
         switch ($where){
             case 'top':
                 if ($config['ad_top']){
-                    echo file_get_contents($config['domain'].'static/ad_top.html');
+                    include (APP.'/static/ad_top.html');
                 }
                 break;
             case 'bot':
                 if ($config['ad_bot']){
-                    echo file_get_contents($config['domain'].'static/ad_bot.html');
+                    include (APP.'/static/ad_bot.html');
                 }
                 break;
             default:
@@ -160,7 +160,7 @@
     }
 
     // 统计代码 如需修改请打开 /static/hm.js
-    $hm = file_get_contents(__DIR__.'/../static/hm.js');
+    $hm = file_get_contents(APP.'/../static/hm.js');
 
     // 删除指定文件
     function del($url){

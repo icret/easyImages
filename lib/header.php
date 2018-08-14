@@ -25,10 +25,10 @@ echo '
     '.showAD('top').'
     <div class="md-lg-12 header-dividing">
         <ul class="nav nav-pills">
-            <li class="active"><a href="../index.php">Index</a></li>
+            <li class="active"><a href="../index.php">首页</a></li>
             <li><a href="https://github.com/icret/easyImages" target="_blank">GitHub<span class="label label-badge label-success"></span></a></li>
-            <li><a href="'.$config['domain'].'/about.php">About<span class="label label-badge label-success"></span></a></li>
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+            <li><a href="'.$config['domain'].'about.php">关于<span class="label label-badge label-success"></span></a></li>
+            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">更多>><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="'.$config['domain'].'lib/list.php">浏览</a></li>
             <li><a href="'.$config['domain'].'lib/del.php">删除</a></li>
@@ -36,7 +36,7 @@ echo '
             <li><a href="../index.php?outLogin=1">退出</a></li>
         </ul>
             </li>
-            <li><a class="dropdown-toggle hidden-xs" data-toggle="dropdown" href="#">QrCode<span class="caret"></span></a>
+            <li><a class="dropdown-toggle hidden-xs" data-toggle="dropdown" href="#">二维码<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <input id="text" type="hidden" value=""/>
                     <li id="qrcode" style="width:100%;">扫描二维码使用手机上传</li>
