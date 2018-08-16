@@ -196,7 +196,7 @@
             exit( '{"result":"failed","message":"API已经关闭。"}' );
         }elseif(empty($_POST)){
             header( 'Refresh: 2; url=' . $config['domain'] );//三秒以后跳转首页
-            exit( '{"result":"failed","message":"请输入合法参数。"} 即将跳转到首页 >>' );
+            exit( '{"result":"failed","message":"请输入合法参数。"}' );
         }
         // 是否开启api自定义水印
         if ($config['apiWater']){
@@ -209,7 +209,7 @@
             return $apiWaterText = $config['waterText'];
         }
     }
-    // api轮询上传 待开发
+    // 待开发 api轮询上传
     function CDApi(){
         global $config;
         if ($config['crossDomain']){
