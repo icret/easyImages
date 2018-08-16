@@ -7,7 +7,7 @@ echo '<title>简单图床 - EasyImage</title>';
   <div class="col-md-12">
     <ul style="list-style: none;margin:1px 1px 30px 1px;">
       <li class="icon icon-dot-circle text-muted">此页面仅作展示使用，每日定时清理，请勿当做图床。单个文件限制2M。</li></ul>
-    <div id='upShowID' class="uploader col-md-10 col-md-offset-1" data-ride="uploader" data-url="./file.php">
+    <div id='upShowID' class="uploader col-md-10 col-md-offset-1" data-ride="uploader" data-url="file.php">
       <div class="uploader-message text-center">
         <div class="content"></div>
         <button type="button" class="close">×</button></div>

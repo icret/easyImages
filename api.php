@@ -3,12 +3,12 @@
 require './lib/class.upload.php';
 require './lib/func.php';
 
-//将时区设置为上海时区
-ini_set('date.timezone','Asia/Shanghai');
+// 检查是否开启api
+apiStatus();
+// 打开共功域
+header('Access-Control-Allow-Origin:*');
 
-// 校验是否设置登录方可上传 避免被恶意调用
-mustLogin();
-
+// 图片上传处理
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
@@ -48,7 +48,7 @@ if ($handle->uploaded){
         switch ($config['watermark']){
             case 1: // 文字水印 过滤gif
                 if (isAnimatedGif($handle->file_src_pathname)===0){
-                    $handle->image_text = $config['waterText'];
+                    $handle->image_text = $apiWaterText;
                     $handle->image_text_direction = $config['textDirection'];
                     $handle->image_text_color = $config['textColor'];
                     $handle->image_text_opacity = $config['textOpacity'];

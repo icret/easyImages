@@ -15,7 +15,7 @@
         if (!is_dir($config['filePath'])) {
             mkdir( $config['filePath'], 0777);
         }elseif (!is_writable($config['filePath'])) {
-            chmod( $config['filePath'], 777);
+            chmod( $config['filePath'], 0777);
         }
 
         // 图片默认上传文件夹是否存在、可写
@@ -160,7 +160,7 @@
     }
 
     // 统计代码 如需修改请打开 /static/hm.js
-    $hm = file_get_contents(APP.'/../static/hm.js');
+    $hm = file_get_contents(APP.'/static/hm.js');
 
     // 删除指定文件
     function del($url){
@@ -187,4 +187,34 @@
             }else{
                 echo "'file.php'";
             }
+    }
+    // 是否开启api上传
+    function apiStatus() {
+        global $config;
+        // 是否开启api
+        if ($config['apiStatus']===false){
+            exit( '{"result":"failed","message":"API已经关闭。"}' );
+        }elseif(empty($_POST)){
+            header( 'Refresh: 2; url=' . $config['domain'] );//三秒以后跳转首页
+            exit( '{"result":"failed","message":"请输入合法参数。"} 即将跳转到首页 >>' );
+        }
+        // 是否开启api自定义水印
+        if ($config['apiWater']){
+            // 强制定义水印类型为文字水印
+            $config['watermark']=1;
+            // 自定义水印文字 如果没有指定则使用系统默认
+            $apiWaterText = isset($_REQUEST['apiWaterText'])?$_REQUEST['apiWaterText']:$config['waterText'];
+            return $config['waterText'].$apiWaterText;
+        }else{
+            return $apiWaterText = $config['waterText'];
+        }
+    }
+    // api轮询上传 待开发
+    function CDApi(){
+        global $config;
+        if ($config['crossDomain']){
+            echo $config['CDomains'][array_rand($config['CDomains'])];
+        }else{
+            echo 'api.php';
+        }
     }
