@@ -1,6 +1,6 @@
 ![例子](https://img.545141.com/images/201808/daf111c0b24a5753.png "例子")
 # EasyImage 简单图床介绍  邮箱:lemonim(at)qq.com
-  **支持多文件上传,远程上传,简单无数据库,直接返回图片url,markdown,bbscode,html的一款图床程序 演示地址： http://t.cn/ReBp80X**
+  **支持多文件上传,远程上传,api上传,简单无数据库,直接返回图片url,markdown,bbscode,html的一款图床程序 演示地址： http://t.cn/ReBp80X**
   
   之前一直用的图床程序是:PHP多图长传程序2.4.3
   由于版本过老并且使用falsh上传，在当前html5流行大势所趋下，遂利用基础知识新写了一个以html5为默认上传并且支持flash,兼容至IE9。
@@ -36,10 +36,7 @@
 3. 修改新服务器的 **config.php** 的 **"domain"**为当前域名（末尾有'/'）
 4. 修改原服务器的 **config.php** 的 **'crossDomain'** 为 **true** (开启true 关闭false)
 5. 修改原服务器的 **config.php** 的 **'CDomains'** 为 http：//www.新服务器.com/crossdmain/file.php
-
-
-
-## 举例
+## 异地上传示例
 * 我有一个域名a.com，同时想随机上传到b.com，c.com等域名。
 * 首先把a.com服务器的 **crossdomain** 文件夹和 **config.php** 文件拷贝到b.com,c.com等主机。
 * 修改复制过去的 **config.php** 里边的 **"domain"** 为当前域名 比如b.com修改成`'domain'=>'http：//b.com/t/file.php',`
@@ -53,15 +50,51 @@ c.com也同样改成`'domain'=>'http：//c.com/t/file.php',` 。注意要写完�
 ]`
 注意标点符号，最后一个域名后边没有','
 * 这样就好啦，可以测试一下了。如果有改动，请直接修改a.com的 **config.php** 然后复制到各个主机即可。
+
+# api上传示例
+
+## 请求
+| 功能  | 上传图片接口  |
+| :------------: | :------------: |
+| HTTP 请求方式  | POST  |
+| URL  |  https://img.545141.com/api.php |
+## 参数
+|  参数名称 | 类型  |是否必须 | 说明 |
+| :------------: | :------------: |
+|  file | File  | 是 | 表单名称 |
+|  apiWaterText |  Hidden | 否 | 自定义上传的文字水印 |
+
+## 返回json数据说明
+| 名称  |  类型 | 示例值| 说明 |
+| :------------: | :------------: |
+| result  | String  | success | 上传文件状态。成功为 success 错误为 failed |
+|  message |  String | https:\/\/img.545141.com\/images\/201808\/16faa5601aec0cd0.jpg |如果成功返回url,错误则显示描述 |
+
+## 成功响应示例
+```json
+{"result":"success","url":"https:\/\/img.545141.com\/images\/201808\/16faa5601aec0cd0.jpg"}
+```
+## 错误示例
+```json
+{"result":"failed","message":"API已经关闭。"}
+{"result":"failed","message":"请输入合法参数。"}
+```
+## 上传示例
+```html
+<form action="https://img.545141.com/api.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="hidden" name="apiWaterText" value="www.test.com">
+    <input type="submit" value="上传">
+</form>
+```
 ---
 * 2018-8-16 v1.6.3
  - 支持开启/关闭api上传(支持开启/关闭api自定义文字水印)
  - 修复权限错误
  - 修复二级目录引入错误
- - 已知宝塔面板(bt.cn)安装后会出现上传500错误，错误未知。
  
 * 2018-8-8 v1.5.3
- - 添加上传图片只远程主机
+ - 添加上传图片至远程主机
  - 修复逻辑
  
 * 2018-8-6 v1.4.3
