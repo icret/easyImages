@@ -3,9 +3,6 @@
 require './lib/class.upload.php';
 require './lib/func.php';
 
-//将时区设置为上海时区
-ini_set('date.timezone','Asia/Shanghai');
-
 // 校验是否设置登录方可上传 避免被恶意调用
 mustLogin();
 

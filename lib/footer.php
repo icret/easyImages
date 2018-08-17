@@ -36,7 +36,7 @@ echo '
   <footer class="text-muted small col-md-12" style="text-align: center">
    '.showAD('bot').'
   <hr />
-        Copyright © '. date('Y').' EasyImage Powered By <code><a href="https://github.com/icret/easyImages" target="_blank">pyther</a></code> Verson: '.$config['Version'].$hm.'
+        Copyright © '. date('Y').' EasyImage Powered By <code><a href="https://github.com/icret/easyImages" target="_blank">icret</a></code> Verson: '.$config['Version'].$hm.'
     </footer>
 </body>
 </html>
