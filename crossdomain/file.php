@@ -4,13 +4,11 @@ require __DIR__.'/lib/class.upload.php';
 require __DIR__.'/lib/func.php';
 // 制定允许其他域名访问
 header("Access-Control-Allow-Origin:*");
-//将时区设置为上海时区
-ini_set('date.timezone','Asia/Shanghai');
 
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
-    $handle->file_new_name_body = config_rename();
+    $handle->file_new_name_body = 'cross_'.config_rename();
     // 允许上传大小
     $handle->file_max_size = $config['maxSize'];
     // 允许上传的mime类型

@@ -163,15 +163,17 @@
     $hm = file_get_contents(APP.'/static/hm.js');
 
     // 删除指定文件
-    function del($url){
+    function getDel($url){
+        global $config;
         // url本地化
         $url = htmlspecialchars(parse_url($url)['path']);   // 过滤html 获取url path
-        $url = urldecode(trim(__DIR__.'/..'.$url));
+        $url = urldecode(trim($url));
+        $url = __DIR__.'/../'.strstr($url,$config['filePath']);
         // 文件是否存在
         if (file_exists($url)){
             // 执行删除
             if (unlink($url)){
-                echo '<p class="text-success">删除成功</p>';
+                echo '<p class="text-success">删除成功,如果开启了CDN，可能存在还能打开的情况!</p>';
             }else{
                 echo '<p class="text-danger">删除失败</p>';
             }

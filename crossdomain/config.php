@@ -34,7 +34,7 @@
     /*---------------------------------------配置------------------------------------*/
     $config = array (
         // 主要设置
-        'domain'        => 'https://img.545141.com/',       // 域名 需要完全书写http?s://domain/
+        'domain'        => 'https://img.545141.com/crossdomain/',       // 域名 需要完全书写http?s://domain/
         'maxSize'       => 2097152,                         // 上传文件大小的最大值 默认2M  最大请参考php.ini修改 同时需要修改前端js
         'filePath'      => 'images/',                       // 图片存储文件夹 末尾需加 '/'
         'png_zip'       => 7,                               // png 图像质量 介于1（快速但大文件）和9（慢速但较小的文件）之间 ，空为不压缩
@@ -43,11 +43,12 @@
         'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
         'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
         'mustLogin'     => false,                           // * 仅允许登录后上传 开启true 关闭false
-        'crossDomain'   => false,                            // * 是否开启异地上传 开启true 关闭false
+        'crossDomain'   => false,                           // * 是否开启异地上传 开启true 关闭false
         'CDomains'      => [                                // * 异地上传的域名列表 如果只有一个，则默认只使用这个一个。
             'https://img.545141.com/crossdomain/file.php', 	// * 异地上传的域名列表如果有多个，请按照格式书写，会随机调用。最后一个不要加','
             'https://img.545141.com/api.php'
         ],
+        'crossDelHash'  => md5(date("dH")+9),   			// * 远程删除的Hash认证，请与远程保持一致！如果自行搭建请修改hash
         'apiStatus'     => true,                            // 是否开启api 开启true 关闭false
         'apiWater'      => true,                            // 是否开启api自定义水印 开启true 关闭false
         // 文字水印设置
@@ -56,7 +57,7 @@
         'textPadding'   => 10,                              //     边距 px
         'textColor'     => '#FF0000',                       //     字体颜色 16色
         'textOpacity'   => 100,                             //     字体透明度 0-100
-        'textFont'      => APP.'/static/MicrosoftYaHei.ttf',   //     字体路径相对路径
+        'textFont'      => APP.'/static/imitationSong.ttf',//     字体路径相对路径
         'fontSize'      => 23,                              //     字体大小
         'text_bg_set'   => false,                           //     是否设置水印背景色 设置true 不设置false
         'text_water_bg' => '#DCDCDC',                       //     背景色 背景大小与边距textPadding有关 空则不显示背景颜色 16色

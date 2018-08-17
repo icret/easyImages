@@ -12,7 +12,7 @@ header('Access-Control-Allow-Origin:*');
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
-    $handle->file_new_name_body = config_rename();
+    $handle->file_new_name_body = 'api_'.config_rename();
     // 允许上传大小
     $handle->file_max_size = $config['maxSize'];
     // 允许上传的mime类型

@@ -43,11 +43,12 @@
         'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
         'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
         'mustLogin'     => false,                           // * 仅允许登录后上传 开启true 关闭false
-        'crossDomain'   => false,                            // * 是否开启异地上传 开启true 关闭false
+        'crossDomain'   => false,                           // * 是否开启异地上传 开启true 关闭false
         'CDomains'      => [                                // * 异地上传的域名列表 如果只有一个，则默认只使用这个一个。
             'https://img.545141.com/crossdomain/file.php', 	// * 异地上传的域名列表如果有多个，请按照格式书写，会随机调用。最后一个不要加','
             'https://img.545141.com/api.php'
         ],
+        'crossDelHash'  => md5(date("dH")+9),   			// * 远程删除的Hash认证，请与远程保持一致！如果自行搭建请修改hash
         'apiStatus'     => true,                            // 是否开启api 开启true 关闭false
         'apiWater'      => true,                            // 是否开启api自定义水印 开启true 关闭false
         // 文字水印设置
@@ -56,7 +57,7 @@
         'textPadding'   => 10,                              //     边距 px
         'textColor'     => '#FF0000',                       //     字体颜色 16色
         'textOpacity'   => 100,                             //     字体透明度 0-100
-        'textFont'      => APP.'/static/MicrosoftYaHei.ttf',   //     字体路径相对路径
+        'textFont'      => APP.'/static/imitationSong.ttf',//     字体路径相对路径
         'fontSize'      => 23,                              //     字体大小
         'text_bg_set'   => false,                           //     是否设置水印背景色 设置true 不设置false
         'text_water_bg' => '#DCDCDC',                       //     背景色 背景大小与边距textPadding有关 空则不显示背景颜色 16色
@@ -79,5 +80,5 @@
         'ad_top'        => false,                           // * 开启顶部广告
         'ad_bot'        => true,                            // * 开启底部广告
         'language'      => 'zh_CN',                         // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
-        'Version'   	=> '1.5.4'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
+        'Version'   	=> '1.6.4'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
     );
