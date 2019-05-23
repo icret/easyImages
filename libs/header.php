@@ -1,17 +1,17 @@
 <?php
-require_once __DIR__.'/function.php';
+require_once __DIR__ . '/function.php';
 echo '
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <title>'.$config['title'].'</title>
+    <title>' . $config['title'] . '</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="'.$config['keywords'].'" />
-    <meta name="description" content="'.$config['description'].'" />
+    <meta name="keywords" content="' . $config['keywords'] . '" />
+    <meta name="description" content="' . $config['description'] . '" />
     <link rel="shortcut icon" href="favicon.ico"  type="image/x-icon" />
-    '.static_cdn().'
+    ' . static_cdn() . '
     <style>
         .uploader-files{
             min-height:160px;
@@ -20,7 +20,7 @@ echo '
     </style>
 </head>
 <body class="container">
-    '.showAD('top').'
+    ' . showAD('top') . '
     <div class="md-lg-12 header-dividing">
         <ul class="nav nav-pills">
             <li class="active"><a href="../index.php">首页</a></li>

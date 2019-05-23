@@ -1,16 +1,16 @@
 <?php
 include './libs/header.php';
 mustLogin();
-if (@$_GET['e']==1){
-  setcookie('admin',null);
-  echo '<code>退出成功</code>';
-  header('Refresh:2;libs/login.php');
+if (@$_GET['e'] == 1) {
+    setcookie('admin', null);
+    echo '<code>退出成功</code>';
+    header('Refresh:2;libs/login.php');
 }
 ?>
 <div class="container">
   <div class="col-md-12">
     <ul style="list-style: none;margin:1px 1px 30px 1px;">
-      <?php if(!empty($config['tips'])){echo '<li class="icon icon-dot-circle text-muted">'.$config['tips'].'</li></ul>';} ?>
+      <?php if (!empty($config['tips'])) {echo '<li class="icon icon-dot-circle text-muted">' . $config['tips'] . '</li></ul>';} ?>
       <div id='upShowID' class="uploader col-md-10 col-md-offset-1" data-ride="uploader" data-url="file.php">
         <div class="uploader-message text-center">
           <div class="content"></div>
@@ -58,7 +58,7 @@ if (@$_GET['e']==1){
     // 当选择文件后立即自动进行上传操作
     autoUpload: true,
     // 文件上传提交地址
-    url: '<?php echo crossdomain();?>file.php',
+    url: '<?php echo crossdomain(); ?>file.php',
     //图片压缩
     resize: {
       quuality: 90,
@@ -110,5 +110,5 @@ if (@$_GET['e']==1){
     }
   });
 </script>
-<?php 
-include APP_ROOT.'/libs/footer.php';
+<?php
+include APP_ROOT . '/libs/footer.php';
