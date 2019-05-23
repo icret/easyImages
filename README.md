@@ -1,3 +1,4 @@
+### 已经更新最新2.0版建议以后使用2.0版本，修复大量bug https://github.com/icret/easyImages2.0
 ![例子](https://img.545141.com/images/201808/daf111c0b24a5753.png "例子")
 # EasyImage 简单图床介绍  邮箱:lemonim(at)qq.com
   **支持多文件上传,远程上传,api上传,简单无数据库,直接返回图片url,markdown,bbscode,html的一款图床程序 演示地址： http://t.cn/ReBp80X**
