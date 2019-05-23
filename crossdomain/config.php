@@ -1,97 +1,85 @@
 <?php
-/**
- * EasyImage - 简单图床
- *
- * @author icret
- * @email  lemonim@qq.com
- * @Github  https://github.com/icret/easyImages
- * @Review 2019-5-21 13:05:20
- * 上传后请打开check.php先检查服务器配置，更改密码等操作
- */
+    /**
+     * @author      pyther <lemonim@qq.com>
+     * @time        2018年7月31日00:57:50
+     * @thanks      https://github.com/verot/class.upload.php
+     * @license     http://opensource.org/licenses/gpl-license.php GNU Public License
+     */
+    /*---------------------------------------*--------------------------------------/
+     * 支持设置图片质量
+     * 支持文字/图片水印 可自定义文字颜色
+     * 支持文字水印背景颜色
+     * 支持文字水印透明度
+     * 支持上传图片转换为指定格式
+     * 支持设置图片指定宽/高
+     * 支持限制最低宽度/高度上传
+     * 支持静态文件CDN/本地切换
+     * 支持开启/关闭浏览最近上传图片
+     * 支持仅登录后上传
+     * 支持设置广告
+     * 支持网站统计 请将统计代码放入:/static/hm.js
+     * 支持删除自定义删除图片(仅管理员)
+     * 支持上传图片至远程服务器(异域存储)
+     * 支持开启/关闭api上传(支持开启/关闭api自定义文字水印)
+     * 待开发：
+     * - 完善设置管理
+	 * - 已知宝塔面板(bt.cn)安装后会出现上传500错误，错误未知。
+    -----------------------------------------*--------------------------------------*/
+    // 设置html为utf8
+    header('Content-Type:text/html;charset=utf-8');
+    //将时区设置为上海时区
+    ini_set('date.timezone','Asia/Shanghai');
+    // 定义当前目录
+    define('APP',__DIR__);
 
-// 设置html为utf8
-header('Content-Type:text/html;charset=utf-8');
-//将时区设置为上海时区
-ini_set('date.timezone', 'Asia/Shanghai');
-// 修改内存限制 根据服务器配置选择，低于128M容易出现上传失败，你懂得图片挺占用内存的
-ini_set('memory_limit', '512M');
-// 定义当前目录
-define('APP_ROOT', __DIR__);
+    /*---------------------------------------配置------------------------------------*/
+    $config = array (
+        // 主要设置
+        'domain'        => 'https://img.545141.com/crossdomain/',       // 域名 需要完全书写http?s://domain/
+        'maxSize'       => 2097152,                         // 上传文件大小的最大值 默认2M  最大请参考php.ini修改 同时需要修改前端js
+        'filePath'      => 'images/',                       // 图片存储文件夹 末尾需加 '/'
+        'png_zip'       => 7,                               // png 图像质量 介于1（快速但大文件）和9（慢速但较小的文件）之间 ，空为不压缩
+        'jpeg_zip'      => 85,                              // jpeg图像质量 介于1-100 数值越大质量越高 默认85
+        'watermark'     => 1,                               // 是否开启水印 0关闭，1文字水印，2图片水印 动态gif不能添加水印
+        'waterPosition' => 'TB',                            // 水印位置 一个或两个的组合：T=top，B =bottom，L=left，R=right
+        'imgConvert'    => '',                              // 是否转换图片为指定格式:('png'|'jpeg'|'gif'|'bmp'|'')空则不转换
+        'mustLogin'     => false,                           // * 仅允许登录后上传 开启true 关闭false
+        'crossDomain'   => false,                           // * 是否开启异地上传 开启true 关闭false
+        'CDomains'      => [                                // * 异地上传的域名列表 如果只有一个，则默认只使用这个一个。
+            'https://img.545141.com/crossdomain/file.php', 	// * 异地上传的域名列表如果有多个，请按照格式书写，会随机调用。最后一个不要加','
+            'https://img.545141.com/api.php'
+        ],
+        'crossDelHash'  => md5(date("dH")+9),   			// * 远程删除的Hash认证，请与远程保持一致！如果自行搭建请修改hash
+        'apiStatus'     => true,                            // 是否开启api 开启true 关闭false
+        'apiWater'      => true,                            // 是否开启api自定义水印 开启true 关闭false
+        // 文字水印设置
+        'waterText'     => '简单图床 img.141545.com',		// 指定文字水印 [
+        'textDirection' => 'h',                             //     文字方向 水平'h' 垂直'v'
+        'textPadding'   => 10,                              //     边距 px
+        'textColor'     => '#FF0000',                       //     字体颜色 16色
+        'textOpacity'   => 100,                             //     字体透明度 0-100
+        'textFont'      => APP.'/static/imitationSong.ttf',//     字体路径相对路径
+        'fontSize'      => 23,                              //     字体大小
+        'text_bg_set'   => false,                           //     是否设置水印背景色 设置true 不设置false
+        'text_water_bg' => '#DCDCDC',                       //     背景色 背景大小与边距textPadding有关 空则不显示背景颜色 16色
+        'text_bg_opa'   => 50,                              //     背景色透明度 0-100 ]
+        // 图片水印设置
+        'waterImg'      => APP.'/static/watermark.png',        // 图片水印路径 支持GIF,JPG,BMP,PNG和PNG alpha
+        // 压缩图片
+        'image_resize'  => false,                           // 是否调整图片大小 开启true 关闭false
+        'image_ratio'   => false,                           // 是否等比调整图片 开启true 关闭false
+        'image_x'       => 750,                             //      调整后的图片宽度
+        'image_y'       => 450,                             //      调整后的图片高度
 
-$config = array(
-    // 网站标题
-     'title' => '简单图床 - EasyImage',
-    // 网站关键字
-     'keywords' => '简单图床,easyimage,无数据库图床',
-    // 网站描述
-     'description' => '支持多文件上传,远程上传,api上传,简单无数据库,直接返回图片url,markdown,bbscode的一款html5图床程序 。',
-    // 网站公告
-     'tips' => ' 单个文件限制5M，每次最多上传30张图片。',
-    // 当前域名,末尾不加"/" 如果是异域上传请修改为当前异域域名
-     'domain' => 'https://img.545141.com/crossdomain',
-    // 存储路径 末尾需要加"/"
-     'path' => '/public/data/',
-    // 最大上传限制 默认为5m 请使用工具转换mb http://www.bejson.com/convert/filesize/
-     'maxSize' => 5242880,
-    // 是否开启登录上传 开启:true 关闭false
-     'mustLogin' => false,
-    // 登录密码 此密码非管理密码
-     'password' => '7070',
-    // 开启管理 开启后务必修改密码 修改方式请见read.php
-     'tinyfilemanager' => true,
-    // 是否开启API上传
-     'apiStatus' => true,
-    // 是否开启异域上传 开启true 关闭 false
-     'crossdomain' => false,
-    // 异域上传域名 末尾需要加'/'
-     'CDomains' => 'https://img.545141.com/crossdomain/',
-    // 是否开启水印:0关闭，1文字水印，2图片水印 动态gif不能添加水印
-     'watermark' => 2,
-    // 水印文字内容
-     'waterText' => 'img.545141.com',
-    // 水印位置 T=top，B =bottom，L=left，R=right 'TBLR'中的一个或两个的组合
-     'waterPosition' => 'TB',
-    // 水印文字方向 h水平 v垂直
-     'textDirection' => 'h',
-    // 水印文字颜色
-     'textColor' => '#DC143C',
-    // 水印文字大小
-     'textSize' => 16,
-    // 字体大小或字体的相对路径
-     'textFont' => '/public/static/zui/fonts/zenicon.ttf',
-    // 水印边距 px
-     'textPadding' => 10,
-    // 水印透明度
-     'textOpacity' => 100,
-    // 图片水印路径 支持GIF,JPG,BMP,PNG和PNG alpha
-     'waterImg' => 'public/static/watermark.png',
-    // 转换图片为指定格式 可选：''|'png'|'jpeg'|'gif'|'bmp';默认值：''
-     'imgConvert' => '',
-    // 设置PNG图像的压缩级别，介于1（快速但大文件）和9（慢速但较小的文件）之间 默认值：null
-     'zipPNG' => null,
-    // 设置JPEG图像的压缩质量（默认值：85）
-     'zipJPEG' => 85,
-    // 使用imagejpeg压缩 0为关闭输入值0-1，值越大质量越高
-     'jpg_zip_php' => 0.8,
-    //最大宽度
-     'maxWidth' => 10240,
-    // 最大高度
-     'maxHeight' => 10240,
-    // 最小宽度
-     'minWidth' => 5,
-    // 最小高度
-     'minHeight' => 5,
-    // 等比例缩小图片 宽度和高度请设置 image_x image_y 开启true，关闭false 关闭下mage_x和image_y设置不生效
-     'imgRatio' => false,
-    // 缩减的最大高度
-     'image_x' => 1024,
-    // 缩减的最大宽度
-     'image_y' => 1024,
-    // 开启静态文件CDN 开启true 关闭false
-     'static_cdn' => true,
-    // 开启顶部广告 如果想添加或修改广告请到 public/static/ad_top.html
-     'ad_top' => false,
-    //  开启底部广告 如果想添加或修改广告请到 public/static/ad_bot.html
-     'ad_bot' => false,
-    'Version' => '2.0.0.9',
-);
+        'image_min_w'   => 1,                               // 上传图片的最小宽度 空为不限制''
+        'image_min_h'   => 1,                               // 上传图片的最小高度 空为不限制''
+        // 其他设置
+        'password'      => '7576',                     		// 默认密码7576
+        'static_cdn'    => true,                            // 开启CDN 开启true 关闭false
+        'showSwitch'    => true,                            // * 图片展示开关 开启true 关闭false
+        'showNumber'    => 30,                              // * 展示随机最近图片数量
+        'ad_top'        => false,                           // * 开启顶部广告
+        'ad_bot'        => true,                            // * 开启底部广告
+        'language'      => 'zh_CN',                         // 显示语言 中文繁体 'zh_TW' 美国英语 'en_US'默认为中文简体'zh_CN'
+        'Version'   	=> '1.6.4'                          // 当前版本 numb.*.* 重大改动 *.numb.* 重要改动 *.*.numb 轻微改动
+    );

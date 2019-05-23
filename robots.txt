@@ -1,3 +1,0 @@
-# robots.txt
-Disallow: /libs/
-Disallow: /public/

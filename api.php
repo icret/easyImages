@@ -1,14 +1,18 @@
 <?php
 // 载入文件
-require __DIR__.'/lib/class.upload.php';
-require __DIR__.'/lib/func.php';
-// 制定允许其他域名访问
-header("Access-Control-Allow-Origin:*");
+require './lib/class.upload.php';
+require './lib/func.php';
 
+// 检查是否开启api
+apiStatus();
+// 打开共功域
+header('Access-Control-Allow-Origin:*');
+
+// 图片上传处理
 $handle = new upload($_FILES['file'],$config['language']);
 if ($handle->uploaded){
     // 图片重命名
-    $handle->file_new_name_body = 'cross_'.config_rename();
+    $handle->file_new_name_body = 'api_'.config_rename();
     // 允许上传大小
     $handle->file_max_size = $config['maxSize'];
     // 允许上传的mime类型
@@ -44,7 +48,7 @@ if ($handle->uploaded){
         switch ($config['watermark']){
             case 1: // 文字水印 过滤gif
                 if (isAnimatedGif($handle->file_src_pathname)===0){
-                    $handle->image_text = $config['waterText'];
+                    $handle->image_text = $apiWaterText;
                     $handle->image_text_direction = $config['textDirection'];
                     $handle->image_text_color = $config['textColor'];
                     $handle->image_text_opacity = $config['textOpacity'];

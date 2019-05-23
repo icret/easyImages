@@ -451,7 +451,7 @@ class upload {
      * Set this variable to the default chmod you want the class to use
      * when creating directories, or attempting to write in a directory
      *
-     * Default value is 0755 (without quotes)
+     * Default value is 0777 (without quotes)
      *
      * @access public
      * @var bool
@@ -1716,7 +1716,7 @@ class upload {
         $this->file_auto_rename         = true;     // auto-rename if the file already exists
         $this->dir_auto_create          = true;     // auto-creates directory if missing
         $this->dir_auto_chmod           = true;     // auto-chmod directory if not writeable
-        $this->dir_chmod                = 0755;     // default chmod to use
+        $this->dir_chmod                = 0777;     // default chmod to use
 
         $this->no_script                = true;     // turns scripts into test files
         $this->mime_check               = true;     // checks the mime type against the allowed list
@@ -2008,7 +2008,7 @@ class upload {
     /**
      * Constructor, for PHP5+
      */
-    function  __construct($file, $lang = 'en_GB')  {
+    function  __construct($file, $lang = 'zh_CN')  {
         $this->upload($file, $lang);
     }
 
@@ -2036,7 +2036,7 @@ class upload {
      *    or   string $file Local filename
      * @param  string $lang Optional language code
      */
-    function upload($file, $lang = 'en_GB') {
+    function upload($file, $lang = 'zh_CN') {
 
         $this->version            = '0.35dev';
 
@@ -2230,7 +2230,7 @@ class upload {
                         $this->error = $this->translate('source_invalid');
                     }
 
-                    $this->no_upload_check = true;
+                    $this->no_upload_check = TRUE;
 
                     if ($this->uploaded) {
                         $this->log .= '- requires a temp file ... ';
@@ -2264,7 +2264,7 @@ class upload {
                 } else {
                     // this is a local filename, i.e.not uploaded
                     $this->log .= '<b>source is a local file ' . $file . '</b><br />';
-                    $this->no_upload_check = true;
+                    $this->no_upload_check = TRUE;
 
                     if ($this->uploaded && !file_exists($file)) {
                         $this->uploaded = false;
@@ -2366,14 +2366,14 @@ class upload {
             $this->file_src_mime = null;
 
             // checks MIME type with Fileinfo PECL extension
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->mime_fileinfo) {
                     $this->log .= '- Checking MIME type with Fileinfo PECL extension<br />';
                     if ($this->function_enabled('finfo_open')) {
                         $path = null;
                         if ($this->mime_fileinfo !== '') {
                             if ($this->mime_fileinfo === true) {
-                                if (getenv('MAGIC') === false) {
+                                if (getenv('MAGIC') === FALSE) {
                                     if (substr(PHP_OS, 0, 3) == 'WIN') {
                                         $path = realpath(ini_get('extension_dir') . '/../') . '/extras/magic';
                                         $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MAGIC path defaults to ' . $path . '<br />';
@@ -2430,7 +2430,7 @@ class upload {
             }
 
             // checks MIME type with shell if unix access is authorized
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->mime_file) {
                     $this->log .= '- Checking MIME type with UNIX file() command<br />';
                     if (substr(PHP_OS, 0, 3) != 'WIN') {
@@ -2459,7 +2459,7 @@ class upload {
             }
 
             // checks MIME type with mime_magic
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->mime_magic) {
                     $this->log .= '- Checking MIME type with mime.magic file (mime_content_type())<br />';
                     if ($this->function_enabled('mime_content_type')) {
@@ -2480,7 +2480,7 @@ class upload {
             }
 
             // checks MIME type with getimagesize()
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->mime_getimagesize) {
                     $this->log .= '- Checking MIME type with getimagesize()<br />';
                     $info = getimagesize($this->file_src_pathname);
@@ -2522,7 +2522,7 @@ class upload {
             }
 
             // we need to work some magic if we upload via Flash
-            if ($this->file_src_mime == 'application/octet-stream' || !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if ($this->file_src_mime == 'application/octet-stream' || !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->file_src_mime == 'application/octet-stream') $this->log .= '- Flash may be rewriting MIME as application/octet-stream<br />';
                 $this->log .= '- Try to guess MIME type from file extension (' . $this->file_src_name_ext . '): ';
                 if (array_key_exists($this->file_src_name_ext, $this->mime_types)) $this->file_src_mime = $this->mime_types[$this->file_src_name_ext];
@@ -2533,7 +2533,7 @@ class upload {
                 }
             }
 
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 $this->log .= '- MIME type couldn\'t be detected! (' . (string) $this->file_src_mime . ')<br />';
             }
 
@@ -2651,7 +2651,7 @@ class upload {
      * @param  integer $mode Optional permissions
      * @return boolean Success
      */
-    function rmkdir($path, $mode = 0755) {
+    function rmkdir($path, $mode = 0777) {
         return is_dir($path) || ( $this->rmkdir(dirname($path), $mode) && $this->_mkdir($path, $mode) );
     }
 
@@ -2663,7 +2663,7 @@ class upload {
      * @param  integer $mode Optional permissions
      * @return boolean Success
      */
-    function _mkdir($path, $mode = 0755) {
+    function _mkdir($path, $mode = 0777) {
         $old = umask(0);
         $res = @mkdir($path, $mode);
         umask($old);
@@ -3780,7 +3780,7 @@ class upload {
                         }
 
                         // resize the image
-                        if ($this->image_dst_x != $this->image_src_x || $this->image_dst_y != $this->image_src_y) {
+                        if ($this->image_dst_x != $this->image_src_x && $this->image_dst_y != $this->image_src_y) {
                             $tmp = $this->imagecreatenew($this->image_dst_x, $this->image_dst_y);
 
                             if ($gd_version >= 2) {
@@ -4591,8 +4591,8 @@ class upload {
                         $this->log .= '- add reflection : ' . $this->image_reflection_height . '<br />';
                         // we decode image_reflection_height, which can be a integer, a string in pixels or percentage
                         $image_reflection_height = $this->image_reflection_height;
-                        if (strpos($image_reflection_height, '%')>0) $image_reflection_height = $this->image_dst_y * ((int) str_replace('%','',$image_reflection_height) / 100);
-                        if (strpos($image_reflection_height, 'px')>0) $image_reflection_height = (int) str_replace('px','',$image_reflection_height);
+                        if (strpos($image_reflection_height, '%')>0) $image_reflection_height = $this->image_dst_y * (str_replace('%','',$image_reflection_height / 100));
+                        if (strpos($image_reflection_height, 'px')>0) $image_reflection_height = str_replace('px','',$image_reflection_height);
                         $image_reflection_height = (int) $image_reflection_height;
                         if ($image_reflection_height > $this->image_dst_y) $image_reflection_height = $this->image_dst_y;
                         if (empty($this->image_reflection_opacity)) $this->image_reflection_opacity = 60;
@@ -4890,7 +4890,7 @@ class upload {
                 } else {
                     // returns the file, so that its content can be received by the caller
                     $return_content = @file_get_contents($this->file_src_pathname);
-                    if ($return_content === false) {
+                    if ($return_content === FALSE) {
                         $this->processed = false;
                         $this->error = $this->translate('reading_failed');
                     }
@@ -4994,7 +4994,7 @@ class upload {
                     elseif (($P*8)%8 == 7) $color[1] = ($color[1] & 0x1);
                     $color[1] = $palette[$color[1]+1];
                 } else
-                    return false;
+                    return FALSE;
                 imagesetpixel($res,$X,$Y,$color[1]);
                 $X++;
                 $P += $bmp['bytes_per_pixel'];

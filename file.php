@@ -1,59 +1,69 @@
 <?php
-require __DIR__ . '/libs/function.php';
-require APP_ROOT . '/libs/class.upload.php';
+// 载入文件
+require './lib/class.upload.php';
+require './lib/func.php';
 
-// 检查是否开启api上传
-if ($config['apiStatus']) {header('Access-Control-Allow-Origin:*');}
+// 校验是否设置登录方可上传 避免被恶意调用
+mustLogin();
 
-$handle = new upload($_FILES['file'], 'zh_CN');
-
-if ($handle->uploaded) {
+$handle = new upload($_FILES['file'],$config['language']);
+if ($handle->uploaded){
+    // 图片重命名
+    $handle->file_new_name_body = config_rename();
+    // 允许上传大小
+    $handle->file_max_size = $config['maxSize'];
     // 允许上传的mime类型
-    $handle->allowed = array('image/*');
-    // 文件命名
-    $handle->file_new_name_body = uniqid();
-    // 最大上传限制
-    $handle->file_max_sizes = $config['maxSize'];
-    // 最大宽度
-    $handle->image_max_width = $config['maxWidth'];
-    // 最大高度
-    $handle->image_max_height = $config['maxHeight'];
-    // 最小宽度
-    $handle->image_min_width = $config['minWidth'];
-    // 最小高度
-    $handle->image_min_height = $config['minHeight'];
-    // 转换图片为指定格式
+    $handle->allowed = array ('image/*');
+	// 
+    // 设置PNG图片的压缩级别
+    $handle->png_compression = $config['png_zip'];
+    // 设置jpeg图片的压缩级别
+    $handle->jpeg_quality = $config['jpeg_zip'];
+    // 设置转换上传图片为指定格式
     $handle->image_convert = $config['imgConvert'];
-    //PNG图片压缩
-    $handle->png_compression = $config['zipPNG'];
-    //JPEG图片压缩
-    $handle->jpeg_quality = $config['zipJPEG'];
 
-    //等比例缩减图片
-    if ($config['imgRatio']) {
-        $handle->image_x = $config['image_x'];
+    // 限制最小上传图片宽度
+    $handle->image_min_width = $config['image_min_w'];
+    // 限制最小上传图片高度
+    $handle->image_min_height = $config['image_min_h'];
+
+    // 裁剪图片
+    if ($config['image_resize']){
+        $handle->image_resize = true;
+        if ($config['image_ratio']){
+            $handle->image_ratio = true;
+            $handle->image_x = $config['image_x'];
+            $handle->image_y = $config['image_y'];
+        }else{
+            $handle->image_x = $config['image_x'];
+            $handle->image_y = $config['image_y'];
+        }
     }
 
-    // 设置水印
-    if ($config['watermark'] > 0) {
-        switch ($config['watermark']) {
+    // 调用水印
+    if ($config['watermark'] > 0){
+        switch ($config['watermark']){
             case 1: // 文字水印 过滤gif
-                if (isAnimatedGif($handle->file_src_pathname) === 0) {
+                if (isAnimatedGif($handle->file_src_pathname)===0){
                     $handle->image_text = $config['waterText'];
                     $handle->image_text_direction = $config['textDirection'];
                     $handle->image_text_color = $config['textColor'];
                     $handle->image_text_opacity = $config['textOpacity'];
                     $handle->image_text_font = $config['textFont'];
-                    $handle->image_text_size = $config['textSize'];
                     $handle->image_text_padding = $config['textPadding'];
                     $handle->image_text_position = $config['waterPosition'];
+                    // 设置背景色
+                    if ($config['text_bg_set']){
+                        $handle->image_text_background = $config['text_water_bg'];
+                        $handle->image_text_background_opacity = $config['text_bg_opa'];
+                    }
                 }
                 break;
             case 2: // 图片水印
-                if (isAnimatedGif($handle->file_src_pathname) === 0) {
-                    $handle->image_watermark = $config['waterImg'];
-                    $handle->image_watermark_position = $config['waterPosition'];
-                    $handle->image_watermark_no_zoom_in = true;
+                if (isAnimatedGif($handle->file_src_pathname)===0){
+                    $handle->image_watermark             = $config['waterImg'];
+                    $handle->image_watermark_position    = $config['waterPosition'];
+                    $handle->image_watermark_no_zoom_in  = true;
                     $handle->image_watermark_no_zoom_out = true;
                 }
                 break;
@@ -64,41 +74,25 @@ if ($handle->uploaded) {
     }
 
     // 存储图片路径:images/201807/
-    $handle->process(APP_ROOT . config_path());
+    $handle->process(config_path());
 
     // 图片完整相对路径:images/201807/0ed7ccfd4dab9cbc.jpg
-    if ($handle->processed) {
-        header('Content-type:text/json');
+    if ($handle->processed){		
+		header('Content-type:text/json');
         // 上传成功后返回json数据
-        $reJson = array(
-            "result" => 'success',
-            "url" => $config['domain'] . config_path() . $handle->file_dst_name,
+        $reJson = array (
+            "result"    =>  'success',
+            "url"       =>  $config['domain'].config_path().$handle->file_dst_name,
         );
-        echo json_encode($reJson);
+        echo json_encode($reJson);		
         $handle->clean();
-    } else {
+    }else{
         // 上传错误 返回错误信息
-        $reJson = array(
-            "result" => 'failed',
-            "message" => $handle->error,
+        $reJson = array (
+            "result"      =>  'failed',
+            "message"     =>  $handle->error
         );
         echo json_encode($reJson);
         echo $handle->error;
     }
-
-    if ($config['jpg_zip_php'] > 0 && $handle->file_dst_name_ext == 'jpg') {
-        $file = __DIR__ . config_path() . $handle->file_dst_name;
-        $percent = $config['jpg_zip_php']; //图片压缩比
-        list($width, $height) = getimagesize($file); //获取原图尺寸
-        //缩放尺寸
-        $newwidth = $width * $percent;
-        $newheight = $height * $percent;
-        $src_im = imagecreatefromjpeg($file);
-        $dst_im = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresized($dst_im, $src_im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-        imagejpeg($dst_im, $file); //输出压缩后的图片
-        imagedestroy($dst_im);
-        imagedestroy($src_im);
-    }
-    unset($handle);
 }
