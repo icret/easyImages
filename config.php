@@ -14,7 +14,7 @@ header('Content-Type:text/html;charset=utf-8');
 //将时区设置为上海时区
 ini_set('date.timezone', 'Asia/Shanghai');
 // 修改内存限制 根据服务器配置选择，低于128M容易出现上传失败，你懂得图片挺占用内存的
-ini_set('memory_limit','512M');
+ini_set('memory_limit', '512M');
 // 定义当前目录
 define('APP_ROOT', __DIR__);
 
@@ -35,16 +35,16 @@ $config = array(
      'maxSize' => 5242880,
     // 是否开启登录上传 开启:true 关闭false
      'mustLogin' => false,
-     // 登录密码 此密码非管理密码
-     'password'=>'7070',
+    // 登录密码 此密码非管理密码
+     'password' => '7070',
     // 开启管理 开启后务必修改密码 修改方式请见read.php
      'tinyfilemanager' => true,
     // 是否开启API上传
      'apiStatus' => true,
     // 是否开启异域上传 开启true 关闭 false
-    'crossdomain'=>false,
-     // 异域上传域名 末尾需要加'/'
-     'CDomains'=>'https://img.545141.com/crossdomain/',
+     'crossdomain' => false,
+    // 异域上传域名 末尾需要加'/'
+     'CDomains' => 'https://img.545141.com/crossdomain/',
     // 是否开启水印:0关闭，1文字水印，2图片水印 动态gif不能添加水印
      'watermark' => 1,
     // 水印文字内容
@@ -72,7 +72,7 @@ $config = array(
     // 设置JPEG图像的压缩质量（默认值：85）
      'zipJPEG' => 85,
     // 使用imagejpeg压缩 0为关闭输入值0-1，值越大质量越高
-    'jpg_zip_php'=>0.8,
+     'jpg_zip_php' => 0.8,
     //最大宽度
      'maxWidth' => 10240,
     // 最大高度
@@ -93,5 +93,5 @@ $config = array(
      'ad_top' => false,
     //  开启底部广告 如果想添加或修改广告请到 public/static/ad_bot.html
      'ad_bot' => false,
-     'Version' => '2.0.0.9'
+    'Version' => '2.0.0.9',
 );
